@@ -1,45 +1,88 @@
 # AutoSurvey
 
-**AutoSurvey**, Python ile anket verilerini otomatik olarak analiz etmeye yarayan açık kaynak bir kütüphanedir. Kullanıcıdan alınan anket verileri üzerinde temel istatistiksel analizler yapar ve görselleştirmelerle destekler.
+**AutoSurvey** is an open-source Python library designed to automate the statistical analysis of survey data. It allows users to quickly generate frequency tables, crosstabs, and descriptive statistics with minimal code. The project is part of a Google Summer of Code 2025 proposal under the Python Software Foundation.
 
-##  Özellikler
+##  Features
 
-- Frekans analizleri
-- Çapraz tablolar (crosstab)
-- Ortalama, standart sapma hesaplama
-- Hipotez testleri (t-testi, ki-kare)
-- Otomatik grafik üretimi (bar chart, heatmap vs.)
-- Kullanıcı dostu arayüz (isteğe bağlı Streamlit)
+- Frequency tables for categorical variables
+- Crosstabulations for comparing two variables
+- Mean and standard deviation for numerical columns
+- Planned: Hypothesis testing (t-test, chi-square)
+- Planned: Confidence intervals
+- Planned: Visualizations (bar charts, heatmaps)
+- Optional: Streamlit-based user interface for non-programmers
 
-##  Kullanım Örneği
+##  Installation
 
-```python
-from autosurvey import SurveyAnalyzer
+This project is under development. You can clone the repository for testing and contribution:
 
-analyzer = SurveyAnalyzer("data/example_survey.csv")
-analyzer.frequency("gender")
-analyzer.crosstab("gender", "education_level")
-analyzer.plot_bar("age_group")
+```bash
+git clone https://github.com/cansualltnts/AutoSurvey.git
+cd AutoSurvey
+pip install -r requirements.txt
 ```
 
-##  Kullanılan Teknolojiler
+##  Project Structure
+
+```
+AutoSurvey/
+├── autosurvey/
+│   └── analyzer.py
+├── data/
+│   └── example_survey.csv
+├── tests/
+│   └── test_analyzer.py
+├── requirements.txt
+└── README.md
+```
+
+##  Example Usage
+
+```python
+from autosurvey.analyzer import SurveyAnalyzer
+
+# Load the dataset
+analyzer = SurveyAnalyzer("data/example_survey.csv")
+
+# Frequency analysis
+print(analyzer.frequency("gender"))
+
+# Crosstab analysis
+print(analyzer.crosstab("gender", "education_level"))
+
+# Descriptive statistics
+print(analyzer.mean_std("age"))
+```
+
+Example `example_survey.csv` file:
+```
+gender,education_level,age
+Female,Bachelor,23
+Male,Master,31
+Female,Bachelor,22
+Male,PhD,40
+Female,Master,27
+```
+
+## Technologies
 
 - Python
 - Pandas
-- Statsmodels
 - SciPy
+- Statsmodels
 - Matplotlib / Seaborn
-- (Opsiyonel) Streamlit
+- (Optional) Streamlit
 
-##  Amaç
+## Purpose
 
-Bu proje, araştırmacıların veya veri analizine yeni başlayan kullanıcıların, anket verileri ile hızlı ve doğru analizler yapabilmelerini sağlamayı hedefler.
+The goal of this project is to support researchers, students, and educators who need quick and accurate statistical summaries of survey data — especially in educational and nonprofit environments where paid tools like SPSS or Excel may not be ideal.
 
-## Örnek Veri
+## About the Developer
 
-`data/` klasörüne örnek bir `.csv` dosyası yükleyerek analizleri başlatabilirsiniz.
+Developed by [@cansualltnts](https://github.com/cansualltnts)  
+3rd-year Statistics Student – Ankara University  
+Contributor for Google Summer of Code 2025 (Python Software Foundation)
 
-## Geliştirici
+## License
 
-Proje: Google Summer of Code 2025 kapsamında Python Software Foundation için önerilmiştir.  
-Geliştirici: [@cansualltnts](https://github.com/cansualltnts)
+MIT License – Free to use, modify, and distribute.
